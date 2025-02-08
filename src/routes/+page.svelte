@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getCurrentWindow } from '@tauri-apps/api/window';
+	import { getNextFocus } from '@bbc/tv-lrud-spatial';
 	import { app_manager } from '$lib/manager.svelte';
 	import { dev } from '$app/environment';
 	import { apps } from '../lib/apps';
@@ -9,30 +10,51 @@
 	if (dev) {
 		tauri_window.setFullscreen(false);
 	}
+
+	function onkeydown(event: KeyboardEvent) {
+		const arrows = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+
+		if (arrows.includes(event.key)) {
+			event.preventDefault();
+
+			const nextFocus = getNextFocus(
+				(document.activeElement as HTMLElement) ||
+					document.querySelector('.app')!,
+				event.keyCode,
+			);
+
+			if (nextFocus) {
+				nextFocus.focus();
+				nextFocus.scrollIntoView({
+					behavior: 'smooth',
+					block: 'end',
+				});
+			}
+		}
+	}
 </script>
+
+<svelte:window {onkeydown} />
 
 <section>
 	<h1>wtv</h1>
 </section>
 
-<section>
-	<div class="apps">
-		{#each apps as app}
-			<button class="app" onclick={() => app_manager.run(app)}>
-				<img src={app.cover_image} alt="{app.name} cover image" />
-			</button>
-		{/each}
-	</div>
+<section class="apps">
+	{#each apps as app}
+		<button class="app" onclick={() => app_manager.run(app)}>
+			<img src={app.cover_image} alt="{app.name} cover image" />
+		</button>
+	{/each}
 </section>
 
-<style>
+<style lang="scss">
 	.apps {
 		display: flex;
 		overflow-x: auto;
-		padding: 8px;
-		gap: 16px;
+		/* gap: 16px; */
 
-		/* scroll-snap-type: x mandatory; */
+		scroll-snap-type: x mandatory;
 	}
 
 	.app {
@@ -40,21 +62,25 @@
 		overflow: clip;
 
 		width: 500px;
-		height: 281px;
+		aspect-ratio: 16 / 9;
 		flex-shrink: 0;
 		padding: 0px;
 
 		background-color: transparent;
 		border-radius: 12px;
-		border: none;
+		border: 12px solid transparent;
 
-		&:focus-visible {
-			outline: 4px solid var(--primary) !important;
+		scroll-snap-align: end;
+
+		&:focus {
+			border-color: var(--primary);
 		}
 
 		img {
 			width: 100%;
 			height: 100%;
+			border-radius: 12px;
+			object-fit: cover;
 		}
 	}
 </style>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import 'ghostsui';
-	import 'spatial-navigation-polyfill';
 
 	interface Props {
 		children: import('svelte').Snippet;
@@ -16,5 +15,13 @@
 <style>
 	main {
 		padding: 12px 16px;
+	}
+
+	:global(::-webkit-scrollbar) {
+		display: none;
+	}
+
+	:global(:root) {
+		font-size: 32px;
 	}
 </style>
