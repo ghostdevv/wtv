@@ -8,4 +8,12 @@
 	let { children }: Props = $props();
 </script>
 
-{@render children()}
+<main>
+	{@render children()}
+</main>
+
+<style>
+	main {
+		padding: 12px 16px;
+	}
+</style>

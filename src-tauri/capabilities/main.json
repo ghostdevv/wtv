@@ -7,6 +7,8 @@
 		"core:default",
 		"core:window:allow-hide",
 		"core:window:allow-show",
+		"core:window:allow-set-fullscreen",
+		"shell:allow-kill",
 		{
 			"identifier": "shell:allow-spawn",
 			"allow": [

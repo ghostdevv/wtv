@@ -1,46 +1,52 @@
 <script lang="ts">
-	import { Command } from '@tauri-apps/plugin-shell';
-	import { window } from '@tauri-apps/api';
+	import { getCurrentWindow } from '@tauri-apps/api/window';
+	import { app_manager } from '$lib/manager.svelte';
+	import { dev } from '$app/environment';
+	import { apps } from '../lib/apps';
 
-	async function onclick() {
-		const self = window.getCurrentWindow();
+	const tauri_window = getCurrentWindow();
 
-		const app = Command.create('chromium', [
-			'--user-agent=Mozilla/5.0 (Linux; U; Android 4.2.2; en-us; AFTB Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
-			'--app=https://www.youtube.com/tv',
-			'--no-first-run',
-			'--no-default-browser-check',
-			'--hide-scrollbars',
-			'--disable-background-mode',
-			'--disable-extensions',
-		]);
-
-		app.addListener('close', () => {
-			self.show();
-		});
-
-		app.addListener('error', (e) => {
-			console.log(e);
-		});
-
-		const proc = await app.spawn();
-
-		self.hide();
-
-		// const window = new WebviewWindow('wtv-app', {
-		// 	url: 'https://www.youtube.com/tv',
-		// 	userAgent:
-		// 		'Mozilla/5.0 (Linux; U; Android 4.2.2; en-us; AFTB Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
-		// });
-
-		// window.once('tauri://created', () => {
-		// 	console.log('created');
-		// });
-
-		// window.once('tauri://error', (e) => {
-		// 	console.log('error', e);
-		// });
+	if (dev) {
+		tauri_window.setFullscreen(false);
 	}
 </script>
 
-<button {onclick}> Open YouTube </button>
+<section>
+	<h1>wtv</h1>
+</section>
+
+<section>
+	<div class="apps">
+		{#each apps as app}
+			<button class="app" onclick={() => app_manager.run(app)}>
+				<img src={app.cover_image} alt="{app.name} cover image" />
+			</button>
+		{/each}
+	</div>
+</section>
+
+<style>
+	.app {
+		display: block;
+		overflow: clip;
+
+		width: 500px;
+		height: 281px;
+		padding: 0px;
+
+		background-color: transparent;
+		border-radius: 12px;
+		border: none;
+
+		transition: 0.2s outline ease-in-out;
+
+		&:focus-visible {
+			outline: 4px solid var(--primary) !important;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+</style>
