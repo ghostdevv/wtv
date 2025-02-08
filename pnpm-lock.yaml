@@ -11,9 +11,6 @@ importers:
       '@tauri-apps/api':
         specifier: ^2
         version: 2.2.0
-      '@tauri-apps/plugin-opener':
-        specifier: ^2
-        version: 2.2.5
     devDependencies:
       '@sveltejs/adapter-static':
         specifier: ^3.0.6
@@ -27,6 +24,9 @@ importers:
       '@tauri-apps/cli':
         specifier: ^2
         version: 2.2.7
+      ghostsui:
+        specifier: ^1.6.0
+        version: 1.6.0
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -415,9 +415,6 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
-  '@tauri-apps/plugin-opener@2.2.5':
-    resolution: {integrity: sha512-hHsJ9RPWpZvZEPVFaL+d25gABMUMOf/A6ESXnvf/ii9guTukj58WXsAE/SOysXRIhej7kseRCxnOnIMpSCdUsQ==}
-
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
@@ -494,6 +491,12 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
 
+  ghostsui@1.6.0:
+    resolution: {integrity: sha512-gXg1akgRnWEmbDCbEN+5q8laXJOJdP8RqqKhpPaxk3ql0U2LEF5bfBr3wQ59LbdwdwpSK9WspOJ5Crgq2Ploow==}
+
+  greset@2.0.0:
+    resolution: {integrity: sha512-oC3JpE4RUT3iMkkmu5uzWc0H8prJAN3Nv7kcxPlJUtWBQi16UpPm6dxseIeC+KKlevxoSBzuTQeFi71qAjWHxA==}
+
   import-meta-resolve@4.1.0:
     resolution: {integrity: sha512-I6fiaX09Xivtk+THaMfAwnA3MVA5Big1WHF1Dfx9hFuvNIWpXnorlkzhcQf6ehrqQiiZECRt1poOAkPmer3ruw==}
 
@@ -529,6 +532,9 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
+  postcss-value-parser@4.2.0:
+    resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
+
   postcss@8.5.1:
     resolution: {integrity: sha512-6oz2beyjc5VMn/KV1pPw8fliQkhBXrVn1Z3TVyqZxU8kZpzEKhBdmCFqI6ZbmGtamQvQGuU1sgPTk8ZrXDD7jQ==}
     engines: {node: ^10 || ^12 || >=14}
@@ -548,6 +554,10 @@ packages:
     resolution: {integrity: sha512-h80JrZu/MHUZCyHu5ciuoI0+WxsCxzxJTILn6Fs8rxSnFPh+UVHYfeIxK1nVGugMqkfC4vJcBOYbkfkwYK0+gw==}
     engines: {node: '>= 14.18.0'}
 
+  rfs@9.0.6:
+    resolution: {integrity: sha512-KQ0EGVP4l3B3ynUZ1UNX3UoRAeswiX+ljGRcT+MoJKXRwXSUFpVZIPsqurH9pmY/AOGBFq7KKBq9fhRCkkg+SQ==}
+    engines: {node: '>=8'}
+
   rollup@4.34.6:
     resolution: {integrity: sha512-wc2cBWqJgkU3Iz5oztRkQbfVkbxoz5EhnCGOrnJvnLnQ7O0WhQUYyv18qQI79O8L7DdHrrlJNeCHd4VGpnaXKQ==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -556,6 +566,9 @@ packages:
   sade@1.8.1:
     resolution: {integrity: sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==}
     engines: {node: '>=6'}
+
+  sass-hex-rgb@1.0.1:
+    resolution: {integrity: sha512-yxHIGddIE+HPvS86Y2imuu/J4LZmss0K9/Dpos38gAC21ThbZLwE4PeA/2mN3ZLH3gXhHxBtjxf6Oi1GAIrMag==}
 
   set-cookie-parser@2.7.1:
     resolution: {integrity: sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==}
@@ -886,10 +899,6 @@ snapshots:
       '@tauri-apps/cli-win32-ia32-msvc': 2.2.7
       '@tauri-apps/cli-win32-x64-msvc': 2.2.7
 
-  '@tauri-apps/plugin-opener@2.2.5':
-    dependencies:
-      '@tauri-apps/api': 2.2.0
-
   '@types/cookie@0.6.0': {}
 
   '@types/estree@1.0.6': {}
@@ -959,6 +968,15 @@ snapshots:
   fsevents@2.3.3:
     optional: true
 
+  ghostsui@1.6.0:
+    dependencies:
+      greset: 2.0.0
+      sass-hex-rgb: 1.0.1
+
+  greset@2.0.0:
+    dependencies:
+      rfs: 9.0.6
+
   import-meta-resolve@4.1.0: {}
 
   is-reference@3.0.3:
@@ -983,6 +1001,8 @@ snapshots:
 
   picocolors@1.1.1: {}
 
+  postcss-value-parser@4.2.0: {}
+
   postcss@8.5.1:
     dependencies:
       nanoid: 3.3.8
@@ -997,6 +1017,10 @@ snapshots:
   prettier@3.4.2: {}
 
   readdirp@4.1.1: {}
+
+  rfs@9.0.6:
+    dependencies:
+      postcss-value-parser: 4.2.0
 
   rollup@4.34.6:
     dependencies:
@@ -1026,6 +1050,8 @@ snapshots:
   sade@1.8.1:
     dependencies:
       mri: 1.2.0
+
+  sass-hex-rgb@1.0.1: {}
 
   set-cookie-parser@2.7.1: {}
 
