@@ -52,7 +52,7 @@
 	.apps {
 		display: flex;
 		overflow-x: auto;
-		/* gap: 16px; */
+		gap: 8px;
 
 		scroll-snap-type: x mandatory;
 	}
@@ -60,9 +60,6 @@
 	.app {
 		display: block;
 		overflow: clip;
-
-		width: 500px;
-		aspect-ratio: 16 / 9;
 		flex-shrink: 0;
 		padding: 0px;
 
@@ -77,8 +74,9 @@
 		}
 
 		img {
-			width: 100%;
-			height: 100%;
+			width: 650px;
+			height: auto;
+			aspect-ratio: 16 / 9;
 			border-radius: 12px;
 			object-fit: cover;
 		}
