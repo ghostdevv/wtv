@@ -9,6 +9,7 @@
 		"core:window:allow-show",
 		"core:window:allow-set-fullscreen",
 		"shell:allow-kill",
+		"core:webview:allow-create-webview-window",
 		{
 			"identifier": "shell:allow-spawn",
 			"allow": [
