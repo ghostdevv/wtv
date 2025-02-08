@@ -26,19 +26,27 @@
 </section>
 
 <style>
+	.apps {
+		display: flex;
+		overflow-x: auto;
+		padding: 8px;
+		gap: 16px;
+
+		/* scroll-snap-type: x mandatory; */
+	}
+
 	.app {
 		display: block;
 		overflow: clip;
 
 		width: 500px;
 		height: 281px;
+		flex-shrink: 0;
 		padding: 0px;
 
 		background-color: transparent;
 		border-radius: 12px;
 		border: none;
-
-		transition: 0.2s outline ease-in-out;
 
 		&:focus-visible {
 			outline: 4px solid var(--primary) !important;

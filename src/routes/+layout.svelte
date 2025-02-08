@@ -1,5 +1,6 @@
 <script lang="ts">
 	import 'ghostsui';
+	import 'spatial-navigation-polyfill';
 
 	interface Props {
 		children: import('svelte').Snippet;
