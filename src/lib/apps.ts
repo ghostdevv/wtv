@@ -1,6 +1,7 @@
 import { type Window } from '@tauri-apps/api/window';
 import { jellyfin } from './jellyfin';
 import { youtube } from './youtube';
+import { plex } from './plex';
 
 interface AppCtx {
 	tauri_window: Window;
@@ -15,4 +16,4 @@ export interface App {
 	run: Runner;
 }
 
-export const apps: App[] = [youtube, jellyfin];
+export const apps: App[] = [youtube, jellyfin, plex];
