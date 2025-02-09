@@ -1,24 +1,33 @@
-import { WebviewWindow } from '@tauri-apps/api/webviewWindow';
+import { Command } from '@tauri-apps/plugin-shell';
 import type { App } from './apps';
 
 export const jellyfin: App = {
 	name: 'Jellyfin',
 	cover_image: '/jellyfin-cover.png',
 	run(ctx) {
-		return new Promise(async (resolve) => {
-			const app = new WebviewWindow('wtv-app', {
-				url: 'https://watch.willow.sh',
-				fullscreen: true,
-				decorations: false,
-				focus: true,
-			});
+		return new Promise(async (resolve, reject) => {
+			const app = Command.create('chromium', [
+				'--user-agent=Mozilla/5.0 (Linux; U; Android 4.2.2; en-us; AFTB Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
+				'--app=https://watch.willow.sh',
+				'--no-first-run',
+				'--no-default-browser-check',
+				'--hide-scrollbars',
+				'--disable-background-mode',
+				'--disable-extensions',
+			]);
 
-			app.once('tauri://destroyed', () => {
+			app.addListener('close', () => {
 				resolve();
 			});
 
+			app.addListener('error', (e) => {
+				reject(new Error(e));
+			});
+
+			const proc = await app.spawn();
+
 			ctx.signal.addEventListener('abort', () => {
-				app.destroy();
+				proc.kill();
 			});
 		});
 	},
