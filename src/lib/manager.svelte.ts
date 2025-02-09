@@ -16,17 +16,22 @@ class AppManager {
 	public readonly running_app = $derived(!!this.current);
 
 	async run(app: App) {
+		const tauri_window = getCurrentWindow();
+
 		if (this.current) {
 			await this.current.kill();
 			this.current = null;
+			tauri_window.show();
 		}
 
 		const controller = new AbortController();
 
 		const promise = app.run({
-			tauri_window: getCurrentWindow(),
 			signal: controller.signal,
+			tauri_window,
 		});
+
+		tauri_window.hide();
 
 		this.current = {
 			async kill() {
@@ -37,6 +42,7 @@ class AppManager {
 
 		promise.then(() => {
 			this.current = null;
+			tauri_window.show();
 		});
 	}
 }
