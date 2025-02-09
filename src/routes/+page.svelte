@@ -11,6 +11,8 @@
 		tauri_window.setFullscreen(false);
 	}
 
+	let online = $state(false);
+
 	function onkeydown(event: KeyboardEvent) {
 		const arrows = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
 
@@ -34,7 +36,7 @@
 	}
 </script>
 
-<svelte:window {onkeydown} />
+<svelte:window {onkeydown} bind:online />
 
 <section>
 	<h1>wtv</h1>
@@ -48,6 +50,10 @@
 	{/each}
 </section>
 
+{#if !online}
+	<h4 class="offline">You're offline :(</h4>
+{/if}
+
 <style lang="scss">
 	.apps {
 		display: flex;
@@ -55,6 +61,16 @@
 		gap: 8px;
 
 		scroll-snap-type: x mandatory;
+	}
+
+	.offline {
+		position: fixed;
+		bottom: 32px;
+		left: 50%;
+		transform: translateX(-50%);
+
+		text-align: center;
+		color: var(--red);
 	}
 
 	.app {
