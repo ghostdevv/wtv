@@ -44,6 +44,10 @@
 					"name": "flatpak",
 					"cmd": "flatpak",
 					"args": ["run", { "validator": ".*" }]
+				},
+				{
+					"name": "alacritty",
+					"cmd": "alacritty"
 				}
 			]
 		}
