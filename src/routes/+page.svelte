@@ -4,6 +4,7 @@
 	import { app_manager } from '$lib/manager.svelte';
 	import { dev } from '$app/environment';
 	import { apps } from '../lib/apps';
+	import { tick } from 'svelte';
 
 	const tauri_window = getCurrentWindow();
 
@@ -34,6 +35,12 @@
 			}
 		}
 	}
+
+	$effect(() => {
+		tick().then(() => {
+			document.querySelector<HTMLButtonElement>('.app')?.focus();
+		});
+	});
 </script>
 
 <svelte:window {onkeydown} bind:online />
