@@ -25,6 +25,25 @@
 						"--hide-scrollbars",
 						"--disable-background-mode"
 					]
+				},
+				{
+					"name": "spotify",
+					"cmd": "chromium",
+					"args": [
+						{ "validator": "--app=.+" },
+						"--no-first-run",
+						"--no-default-browser-check"
+					]
+				},
+				{
+					"name": "chromium-plain",
+					"cmd": "chromium",
+					"args": []
+				},
+				{
+					"name": "flatpak",
+					"cmd": "flatpak",
+					"args": ["run", { "validator": ".*" }]
 				}
 			]
 		}
