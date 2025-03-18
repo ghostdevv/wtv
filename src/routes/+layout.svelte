@@ -39,6 +39,9 @@
 		}
 
 		if (event.key == 'Escape') {
+			// prettier-ignore
+			info(`Escape pressed. Pathname: ${page.url.pathname} Dialog exists: ${dialog.exists}`);
+
 			if (dialog.exists) {
 				dialog.close();
 			} else if (page.url.pathname == '/') {

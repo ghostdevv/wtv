@@ -51,7 +51,11 @@ class DialogManager {
 	}
 
 	async close() {
-		await this._dialog?.close();
+		info('Closing dialog with close()');
+		await this._dialog?.close().catch((e) => {
+			error(`Error closing dialog: ${e}`);
+			throw e;
+		});
 	}
 }
 
