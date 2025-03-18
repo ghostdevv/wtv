@@ -1,56 +1,70 @@
 {
-	"$schema": "../gen/schemas/desktop-schema.json",
-	"identifier": "main",
-	"description": "Capability for the main window",
-	"windows": ["main"],
-	"permissions": [
-		"core:default",
-		"core:window:allow-hide",
-		"core:window:allow-show",
-		"core:window:allow-set-fullscreen",
-		"shell:allow-kill",
-		"core:webview:allow-create-webview-window",
-		"core:window:allow-close",
-		{
-			"identifier": "shell:allow-spawn",
-			"allow": [
-				{
-					"name": "chromium",
-					"cmd": "chromium",
-					"args": [
-						{ "validator": "--user-agent=.+" },
-						{ "validator": "--app=.+" },
-						"--disable-extensions",
-						"--no-first-run",
-						"--no-default-browser-check",
-						"--hide-scrollbars",
-						"--disable-background-mode"
-					]
-				},
-				{
-					"name": "spotify",
-					"cmd": "chromium",
-					"args": [
-						{ "validator": "--app=.+" },
-						"--no-first-run",
-						"--no-default-browser-check"
-					]
-				},
-				{
-					"name": "chromium-plain",
-					"cmd": "chromium",
-					"args": []
-				},
-				{
-					"name": "flatpak",
-					"cmd": "flatpak",
-					"args": ["run", { "validator": ".*" }]
-				},
-				{
-					"name": "alacritty",
-					"cmd": "alacritty"
-				}
-			]
-		}
-	]
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main",
+  "description": "Capability for the main window",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default",
+    "core:window:allow-hide",
+    "core:window:allow-show",
+    "core:window:allow-set-fullscreen",
+    "shell:allow-kill",
+    "core:webview:allow-create-webview-window",
+    "core:window:allow-close",
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "chromium",
+          "cmd": "chromium",
+          "args": [
+            {
+              "validator": "--user-agent=.+"
+            },
+            {
+              "validator": "--app=.+"
+            },
+            "--disable-extensions",
+            "--no-first-run",
+            "--no-default-browser-check",
+            "--hide-scrollbars",
+            "--disable-background-mode"
+          ]
+        },
+        {
+          "name": "spotify",
+          "cmd": "chromium",
+          "args": [
+            {
+              "validator": "--app=.+"
+            },
+            "--no-first-run",
+            "--no-default-browser-check"
+          ]
+        },
+        {
+          "name": "chromium-plain",
+          "cmd": "chromium",
+          "args": []
+        },
+        {
+          "name": "flatpak",
+          "cmd": "flatpak",
+          "args": [
+            "run",
+            {
+              "validator": ".*"
+            }
+          ]
+        },
+        {
+          "name": "alacritty",
+          "cmd": "alacritty"
+        }
+      ]
+    },
+    "log:default"
+  ]
 }

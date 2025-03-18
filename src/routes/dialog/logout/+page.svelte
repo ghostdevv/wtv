@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { error } from '@tauri-apps/plugin-log';
 	import { invoke } from '@tauri-apps/api/core';
 
 	let disabled = $state(false);
@@ -9,7 +10,7 @@
 		try {
 			await invoke('logout');
 		} catch (e) {
-			console.error('logout failed:', e);
+			error(`logout failed: ${e}`);
 		} finally {
 			disabled = false;
 		}

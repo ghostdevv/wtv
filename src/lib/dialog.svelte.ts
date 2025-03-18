@@ -1,3 +1,4 @@
+import { error, info } from '@tauri-apps/plugin-log';
 import {
 	WebviewWindow,
 	getCurrentWebviewWindow,
@@ -35,7 +36,16 @@ class DialogManager {
 			focus: true,
 		});
 
+		this._dialog.once('tauri://created', () => {
+			info(`Dialog "${name}" created`);
+		});
+
+		this._dialog.once('tauri://error', (e) => {
+			error(`Dialog "${name}" Error: ${e}`);
+		});
+
 		this._dialog.once('tauri://destroyed', () => {
+			info(`Dialog "${name}" destroyed`);
 			this._dialog = null;
 		});
 	}
