@@ -1,4 +1,5 @@
 import { getCurrentWindow } from '@tauri-apps/api/window';
+import { info } from '@tauri-apps/plugin-log';
 import type { App } from './apps';
 
 interface AppHandle {
@@ -26,6 +27,7 @@ class AppManager {
 
 		const controller = new AbortController();
 
+		info(`Running app: ${app.name}`);
 		const promise = app.run({
 			signal: controller.signal,
 			tauri_window,

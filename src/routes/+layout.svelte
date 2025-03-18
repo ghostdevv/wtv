@@ -2,6 +2,7 @@
 	import 'ghostsui';
 	import { getCurrentWindow } from '@tauri-apps/api/window';
 	import { getNextFocus } from '@bbc/tv-lrud-spatial';
+	import { info } from '@tauri-apps/plugin-log';
 	import { dialog } from '$lib/dialog.svelte';
 	import { tick, type Snippet } from 'svelte';
 	import { dev } from '$app/environment';
@@ -47,6 +48,7 @@
 	}
 
 	$effect(() => {
+		info('Launched');
 		tick().then(() => {
 			spatialNavigate();
 		});
