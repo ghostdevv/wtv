@@ -19,6 +19,9 @@ cat > ~/.config/sway/config << 'EOL'
 # Disable window title bars
 default_border none
 
+# Hide cursor
+seat * hide_cursor 2000
+
 # Start the Tauri app
 exec /usr/bin/wtv
 
