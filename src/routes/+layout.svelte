@@ -43,7 +43,7 @@
 			if (dialog.exists) {
 				dialog.close();
 			} else if (page.url.pathname == '/') {
-				dialog.open('logout');
+				dialog.open('exit');
 			}
 		}
 	}
