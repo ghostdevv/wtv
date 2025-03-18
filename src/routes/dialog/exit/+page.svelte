@@ -4,13 +4,15 @@
 
 	let disabled = $state(false);
 
-	async function logout() {
+	const COMMANDS = ['logout', 'shutdown', 'reboot'];
+
+	async function exec(command: string) {
 		disabled = true;
 
 		try {
-			await invoke('logout');
+			await invoke(command);
 		} catch (e) {
-			error(`logout failed: ${e}`);
+			error(`${command} failed: ${e}`);
 		} finally {
 			disabled = false;
 		}
@@ -18,7 +20,11 @@
 </script>
 
 <div class="actions">
-	<button class="secondary" onclick={logout} {disabled}>Logout</button>
+	{#each COMMANDS as command}
+		<button class="secondary" onclick={() => exec(command)} {disabled}>
+			{command}
+		</button>
+	{/each}
 </div>
 
 <style lang="scss">
@@ -27,5 +33,9 @@
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
+
+		button {
+			text-transform: capitalize;
+		}
 	}
 </style>
