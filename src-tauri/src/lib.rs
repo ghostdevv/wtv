@@ -8,7 +8,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             commands::exit::logout,
             commands::exit::shutdown,
-            commands::exit::reboot
+            commands::exit::reboot,
+            commands::exit::relaunch
         ])
         .plugin(tauri_plugin_shell::init())
         .run(tauri::generate_context!())

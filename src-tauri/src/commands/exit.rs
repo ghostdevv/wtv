@@ -1,3 +1,5 @@
+use tauri::AppHandle;
+
 #[tauri::command]
 pub fn logout() -> Result<String, String> {
     let user = std::env::var("USER");
@@ -17,4 +19,9 @@ pub fn shutdown() -> Result<String, String> {
 #[tauri::command]
 pub fn reboot() -> Result<String, String> {
     crate::utils::exec("reboot", vec![])
+}
+
+#[tauri::command]
+pub fn relaunch(app: AppHandle) {
+    app.restart();
 }

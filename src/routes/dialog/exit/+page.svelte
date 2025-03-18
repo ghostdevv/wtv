@@ -4,7 +4,7 @@
 
 	let disabled = $state(false);
 
-	const COMMANDS = ['logout', 'shutdown', 'reboot'];
+	const COMMANDS = ['logout', 'shutdown', 'reboot', 'relaunch'];
 
 	async function exec(command: string) {
 		disabled = true;
