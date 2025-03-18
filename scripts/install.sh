@@ -22,6 +22,9 @@ default_border none
 # Hide cursor
 seat * hide_cursor 2000
 
+# Custom popups should be floating
+for_window [app_id="wtv" title="\w+ - wtv"] floating enable, move position center
+
 # Start the Tauri app
 exec /usr/bin/wtv
 
