@@ -9,5 +9,5 @@ declare module '@bbc/tv-lrud-spatial' {
 		currentFocus: HTMLElement,
 		keyOrKeyCode: string | number,
 		scope?: HTMLElement,
-	): HTMLElement;
+	): HTMLElement | undefined;
 }

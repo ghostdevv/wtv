@@ -13,25 +13,28 @@
 
 	let { children }: Props = $props();
 
+	function spatialNavigate(key = 39) {
+		const next = getNextFocus(
+			(document.activeElement as HTMLElement) ||
+				document.querySelector('button')!,
+			key,
+		);
+
+		if (next) {
+			next.focus();
+			next.scrollIntoView({
+				behavior: 'smooth',
+				inline: 'center',
+			});
+		}
+	}
+
 	function onkeydown(event: KeyboardEvent) {
 		const arrows = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
 
 		if (arrows.includes(event.key)) {
 			event.preventDefault();
-
-			const nextFocus = getNextFocus(
-				(document.activeElement as HTMLElement) ||
-					document.querySelector('.app')!,
-				event.keyCode,
-			);
-
-			if (nextFocus) {
-				nextFocus.focus();
-				nextFocus.scrollIntoView({
-					behavior: 'smooth',
-					block: 'end',
-				});
-			}
+			spatialNavigate(event.keyCode);
 		}
 
 		if (event.key == 'Escape') {
@@ -45,7 +48,7 @@
 
 	$effect(() => {
 		tick().then(() => {
-			document.querySelector<HTMLButtonElement>('button')?.focus();
+			spatialNavigate();
 		});
 	});
 
