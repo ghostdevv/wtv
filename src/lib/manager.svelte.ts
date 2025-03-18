@@ -1,4 +1,4 @@
-import { getCurrentWindow, type Window } from '@tauri-apps/api/window';
+import { getCurrentWindow } from '@tauri-apps/api/window';
 import type { App } from './apps';
 
 interface AppHandle {

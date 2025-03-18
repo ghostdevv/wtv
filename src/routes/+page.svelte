@@ -1,49 +1,8 @@
 <script lang="ts">
-	import { getCurrentWindow } from '@tauri-apps/api/window';
-	import { getNextFocus } from '@bbc/tv-lrud-spatial';
 	import { app_manager } from '$lib/manager.svelte';
-	import { dev } from '$app/environment';
+	import { online } from 'svelte/reactivity/window';
 	import { apps } from '../lib/apps';
-	import { tick } from 'svelte';
-
-	const tauri_window = getCurrentWindow();
-
-	if (dev) {
-		tauri_window.setFullscreen(false);
-	}
-
-	let online = $state(false);
-
-	function onkeydown(event: KeyboardEvent) {
-		const arrows = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
-
-		if (arrows.includes(event.key)) {
-			event.preventDefault();
-
-			const nextFocus = getNextFocus(
-				(document.activeElement as HTMLElement) ||
-					document.querySelector('.app')!,
-				event.keyCode,
-			);
-
-			if (nextFocus) {
-				nextFocus.focus();
-				nextFocus.scrollIntoView({
-					behavior: 'smooth',
-					block: 'end',
-				});
-			}
-		}
-	}
-
-	$effect(() => {
-		tick().then(() => {
-			document.querySelector<HTMLButtonElement>('.app')?.focus();
-		});
-	});
 </script>
-
-<svelte:window {onkeydown} bind:online />
 
 <section>
 	<h1>wtv</h1>
@@ -57,7 +16,7 @@
 	{/each}
 </section>
 
-{#if !online}
+{#if !online.current}
 	<h4 class="offline">You're offline :(</h4>
 {/if}
 
