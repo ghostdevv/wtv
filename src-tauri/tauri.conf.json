@@ -14,7 +14,8 @@
 			{
 				"title": "wtv",
 				"fullscreen": true,
-				"decorations": false
+				"decorations": false,
+				"url": "/"
 			}
 		],
 		"security": {
