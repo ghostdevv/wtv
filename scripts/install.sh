@@ -28,9 +28,9 @@ for_window [app_id="wtv" title="\w+ - wtv"] floating enable, move position cente
 # Start the Tauri app
 exec /usr/bin/wtv
 
-# Disable idle
+# Idle handling
 exec swayidle -w \
-    timeout 0 'echo "Idle prevention"' \
+    timeout 3600 'systemctl poweroff' \
     before-sleep 'echo "Preventing sleep"'
 EOL
 
