@@ -12,16 +12,25 @@
 
 	let { children }: Props = $props();
 
+	const FOCUSABLE = '[tabindex], a, input, button';
+
 	function spatialNavigate(key = 39) {
+		const current = document.activeElement as HTMLElement;
+
 		const next = getNextFocus(
-			(document.activeElement as HTMLElement) ||
-				document.querySelector('button')!,
+			current || document.querySelector('button')!,
 			key,
 		);
 
-		if (next) {
-			next.focus();
-			next.scrollIntoView({
+		const toFocus = next
+			? next
+			: current.matches(FOCUSABLE)
+				? current
+				: document.querySelector<HTMLElement>(FOCUSABLE);
+
+		if (toFocus) {
+			toFocus.focus();
+			toFocus.scrollIntoView({
 				behavior: 'smooth',
 				inline: 'center',
 			});
