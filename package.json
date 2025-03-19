@@ -25,6 +25,7 @@
 		"ghostsui": "^1.6.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
+		"runed": "^0.24.1",
 		"sass": "^1.84.0",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",

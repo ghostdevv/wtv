@@ -4,6 +4,7 @@
 	import { info } from '@tauri-apps/plugin-log';
 	import { dialog } from '$lib/dialog.svelte';
 	import { tick, type Snippet } from 'svelte';
+	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 
 	interface Props {
@@ -50,15 +51,23 @@
 			info(`Escape pressed. Pathname: ${page.url.pathname} Dialog exists: ${dialog.exists}`);
 
 			if (dialog.exists) {
-				dialog.close();
-			} else if (page.url.pathname == '/') {
-				dialog.open('exit');
+				return dialog.close();
+			}
+
+			switch (page.url.pathname) {
+				case '/home':
+					dialog.open('exit');
+					break;
+
+				case '/home/manage':
+					goto('/home');
+					break;
 			}
 		}
 	}
 
 	$effect(() => {
-		info('Launched');
+		info('WTV Started');
 		tick().then(() => {
 			spatialNavigate();
 		});
@@ -74,6 +83,8 @@
 <style lang="scss">
 	main {
 		padding: 12px 16px;
+		max-height: 100dvh;
+		height: 100dvh;
 
 		&.mask {
 			user-select: none;
