@@ -1,3 +1,4 @@
+import { getCurrentWindow } from '@tauri-apps/api/window';
 import { Child, Command } from '@tauri-apps/plugin-shell';
 import { error, info } from '@tauri-apps/plugin-log';
 import { wtv_apps } from './wtv-apps';
@@ -45,6 +46,22 @@ class AppLauncher {
 	/** Maps app id to process */
 	private processes = new Map<string, Child>();
 
+	private async check_visibility() {
+		try {
+			const window = getCurrentWindow();
+
+			if (this.processes.size === 0) {
+				info('Showing window');
+				await window.show();
+			} else {
+				info('Hiding window');
+				await window.hide();
+			}
+		} catch (e) {
+			error(`Failed to set visibility: ${e}`);
+		}
+	}
+
 	public async launch(app_id: string) {
 		const app = registry.find(app_id);
 
@@ -69,11 +86,13 @@ class AppLauncher {
 		command.addListener('close', () => {
 			info(`App "${app_id}" closed`);
 			this.processes.delete(app_id);
+			this.check_visibility();
 		});
 
 		const handle_error = (e: unknown) => {
 			error(`Error launching app "${app_id}" (${e})`);
 			this.processes.delete(app_id);
+			this.check_visibility();
 		};
 
 		command.addListener('error', handle_error);
@@ -81,6 +100,7 @@ class AppLauncher {
 		try {
 			const process = await command.spawn();
 			this.processes.set(app_id, process);
+			await this.check_visibility();
 		} catch (e) {
 			handle_error(e);
 		}
