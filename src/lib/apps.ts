@@ -19,7 +19,8 @@ type Environment = ChromiumEnvironment | AlacrittyEnvironment;
 export interface App {
 	id: string;
 	name: string;
-	cover_image: string;
+	icon: string | null;
+	background_colour: string | null;
 	environment: Environment;
 }
 

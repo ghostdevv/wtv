@@ -2,9 +2,10 @@ import type { App } from './apps';
 
 export const wtv_apps: App[] = [
 	{
-		id: 'youtube',
+		id: 'wtv-youtube',
 		name: 'YouTube',
-		cover_image: '/youtube-cover.png',
+		icon: '/apps/youtube.png',
+		background_colour: '#ffffff',
 		environment: {
 			name: 'chromium',
 			url: 'https://www.youtube.com/tv',
@@ -23,9 +24,10 @@ export const wtv_apps: App[] = [
 	// 	},
 	// },
 	{
-		id: 'plex',
+		id: 'wtv-plex',
 		name: 'Plex',
-		cover_image: '/plex-cover.png',
+		icon: '/apps/plex.png',
+		background_colour: '#212121',
 		environment: {
 			name: 'chromium',
 			url: 'https://app.plex.tv/desktop/#!/',
@@ -33,9 +35,10 @@ export const wtv_apps: App[] = [
 		},
 	},
 	{
-		id: 'spotify',
+		id: 'wtv-spotify',
 		name: 'Spotify',
-		cover_image: '/spotify-cover.png',
+		icon: '/apps/spotify.png',
+		background_colour: '#1ED760',
 		environment: {
 			name: 'chromium',
 			url: 'https://open.spotify.com',
@@ -43,9 +46,10 @@ export const wtv_apps: App[] = [
 		},
 	},
 	{
-		id: 'chromium',
+		id: 'wtv-chromium',
 		name: 'Chromium',
-		cover_image: '/chromium-cover.png',
+		icon: '/apps/chromium.png',
+		background_colour: '#353535',
 		environment: {
 			name: 'chromium',
 			url: 'https://duckduckgo.com',
@@ -53,9 +57,10 @@ export const wtv_apps: App[] = [
 		},
 	},
 	{
-		id: 'alacritty',
+		id: 'wtv-alacritty',
 		name: 'Alacritty',
-		cover_image: '/alacritty-cover.png',
+		icon: '/apps/alacritty.png',
+		background_colour: '#181818',
 		environment: {
 			name: 'alacritty',
 		},
