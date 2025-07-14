@@ -31,5 +31,15 @@
 		"svelte-check": "^4.1.5",
 		"typescript": "~5.6.2",
 		"vite": "^6.2.3"
+	},
+	"packageManager": "pnpm@10.13.1",
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@parcel/watcher",
+			"esbuild"
+		]
+	},
+	"volta": {
+		"node": "22.17.0"
 	}
 }
