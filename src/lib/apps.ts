@@ -1,7 +1,7 @@
 import { get_primary_category, type AppCategory } from './app-categories';
+import { type Child, Command } from '@tauri-apps/plugin-shell';
 import { invoke, convertFileSrc } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
-import { Child, Command } from '@tauri-apps/plugin-shell';
 import { error, info } from '@tauri-apps/plugin-log';
 import { wtv_apps } from './wtv-apps';
 

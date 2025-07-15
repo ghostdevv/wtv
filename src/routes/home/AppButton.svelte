@@ -16,13 +16,15 @@
 	class="app"
 	{onclick}
 	title={app.name}
-	class:selected={displayHomeStatus && home.list.includes(app.id)}>
+	class:selected={displayHomeStatus && home.list.includes(app.id)}
+>
 	<div class="content" style:--app-bg-colour={app.background_colour}>
 		{#if app.icon && !imageError}
 			<img
 				src={app.icon}
 				alt="{app.id} cover image"
-				onerror={() => (imageError = true)} />
+				onerror={() => (imageError = true)}
+			/>
 		{:else}
 			<p class="name">{app.name}</p>
 		{/if}

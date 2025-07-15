@@ -37,7 +37,8 @@
 			<button
 				class="tab"
 				class:secondary={active_tab != tab}
-				onclick={() => (active_tab = tab)}>
+				onclick={() => (active_tab = tab)}
+			>
 				{tab_title_case(tab)}
 			</button>
 		{/each}
@@ -48,7 +49,8 @@
 			<AppButton
 				{app}
 				displayHomeStatus
-				onclick={() => home.toggle(app.id)} />
+				onclick={() => home.toggle(app.id)}
+			/>
 		{:else}
 			<h6>No Apps Left :(</h6>
 		{/each}

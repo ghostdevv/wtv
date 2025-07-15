@@ -2,3 +2,5 @@ node_modules
 .svelte-kit
 package.json
 pnpm-lock.yaml
+src-tauri/target
+src-tauri/gen
