@@ -44,7 +44,7 @@ class AppRegistry {
 	}
 
 	list() {
-		return this.registry.values().toArray();
+		return Array.from(this.registry.values());
 	}
 
 	filter_by_category(category: AppCategory) {
