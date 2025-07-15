@@ -36,6 +36,7 @@
 
 		button {
 			text-transform: capitalize;
+			font-size: 1rem;
 		}
 	}
 </style>
