@@ -54,10 +54,6 @@
 					"args": []
 				},
 				{
-					"name": "alacritty",
-					"cmd": "alacritty"
-				},
-				{
 					"name": "dex",
 					"cmd": "dex",
 					"args": ["--wait", { "validator": ".+" }]

@@ -12,19 +12,12 @@ type ChromiumEnvironment = {
 	quirks?: 'user-agent'[];
 };
 
-type AlacrittyEnvironment = {
-	name: 'alacritty';
-};
-
 type SystemAppEnvironment = {
 	name: 'system';
 	desktop_file_path: string;
 };
 
-type Environment =
-	| ChromiumEnvironment
-	| AlacrittyEnvironment
-	| SystemAppEnvironment;
+type Environment = ChromiumEnvironment | SystemAppEnvironment;
 
 export interface App {
 	id: string;
@@ -156,9 +149,6 @@ class AppLauncher {
 
 	private construct_command(app: App): Command<string> {
 		switch (app.environment.name) {
-			case 'alacritty':
-				return Command.create('alacritty', []);
-
 			case 'system':
 				return Command.create('dex', [
 					'--wait',
