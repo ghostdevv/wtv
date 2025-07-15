@@ -9,6 +9,7 @@
 	}
 
 	let { app, onclick, displayHomeStatus }: Props = $props();
+	let imageError = $state(false);
 </script>
 
 <button
@@ -17,8 +18,11 @@
 	title={app.name}
 	class:selected={displayHomeStatus && home.list.includes(app.id)}>
 	<div class="content" style:--app-bg-colour={app.background_colour}>
-		{#if app.icon}
-			<img src={app.icon} alt="{app.id} cover image" />
+		{#if app.icon && !imageError}
+			<img
+				src={app.icon}
+				alt="{app.id} cover image"
+				onerror={() => (imageError = true)} />
 		{:else}
 			<p class="name">{app.name}</p>
 		{/if}
