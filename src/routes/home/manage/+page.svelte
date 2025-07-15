@@ -37,8 +37,7 @@
 			<button
 				class="tab"
 				class:secondary={active_tab != tab}
-				onclick={() => (active_tab = tab)}
-			>
+				onclick={() => (active_tab = tab)}>
 				{tab_title_case(tab)}
 			</button>
 		{/each}
@@ -49,8 +48,7 @@
 			<AppButton
 				{app}
 				displayHomeStatus
-				onclick={() => home.toggle(app.id)}
-			/>
+				onclick={() => home.toggle(app.id)} />
 		{:else}
 			<h6>No Apps Left :(</h6>
 		{/each}
@@ -60,7 +58,7 @@
 <style lang="scss">
 	.manage {
 		display: grid;
-		grid-template-columns: 200px 1fr;
+		grid-template-columns: 300px 1fr;
 		grid-template-rows: 1fr;
 		max-height: 100%;
 		height: 100%;
@@ -73,6 +71,12 @@
 			background-color: var(--background-secondary);
 			border-radius: 12px;
 			padding: 12px;
+
+			overflow-y: auto;
+
+			.tab {
+				font-size: 1rem;
+			}
 		}
 
 		.apps {
