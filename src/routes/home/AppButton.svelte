@@ -70,21 +70,21 @@
 			position: relative;
 
 			&:after {
-				width: 100%;
-				height: 100%;
+				width: calc(100% + 24px);
+				height: calc(100% + 24px);
 				display: grid;
 				place-items: center;
 
 				content: '✓';
 				position: absolute;
-				top: 0;
-				left: 0;
+				top: -12px;
+				left: -12px;
 
 				font-size: 2rem;
 				color: var(--green);
 
 				background-color: rgba(var(--background-tertiary-rgb), 0.5);
-				border-radius: 12px;
+				border-radius: 22px;
 			}
 
 			img {
