@@ -8,4 +8,5 @@ sudo apt upgrade -y \
     sway \
     swaylock \
     swayidle \
-    zsh
+    zsh \
+    dex
