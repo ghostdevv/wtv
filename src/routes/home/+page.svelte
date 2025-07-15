@@ -18,7 +18,7 @@
 		{#if app}
 			<AppButton {app} onclick={() => launcher.launch(app_id)} />
 		{:else}
-			<TextButton>
+			<TextButton onclick={() => home.remove(app_id)}>
 				<h4>"{app_id}" not found</h4>
 			</TextButton>
 		{/if}

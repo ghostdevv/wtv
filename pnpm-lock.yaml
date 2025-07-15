@@ -43,8 +43,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3(prettier@3.5.3)(svelte@5.25.3)
       runed:
-        specifier: ^0.24.1
-        version: 0.24.1(svelte@5.25.3)
+        specifier: ^0.31.0
+        version: 0.31.0(svelte@5.25.3)
       sass:
         specifier: ^1.86.0
         version: 1.86.0
@@ -1406,8 +1406,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  runed@0.24.1:
-    resolution: {integrity: sha512-7LWRiZ+TR/NKSkBwO/AQXgCR40dLl/toM3DxlagPSxXsRGGi40hQkKt2S5ESUrgZJ7YbXhct/vlnJwp2oRrGCg==}
+  runed@0.31.0:
+    resolution: {integrity: sha512-3E3i4svY4PAwI3ANmJnZuVqWG/YJrYW3Jop3HZeycQ0KZNWoFD17Jr+sG/JutJDi15g3vpdzkL7AKk6iMHybdw==}
     peerDependencies:
       svelte: ^5.7.0
 
@@ -2924,7 +2924,7 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.34.6
       fsevents: 2.3.3
 
-  runed@0.24.1(svelte@5.25.3):
+  runed@0.31.0(svelte@5.25.3):
     dependencies:
       esm-env: 1.2.2
       svelte: 5.25.3
