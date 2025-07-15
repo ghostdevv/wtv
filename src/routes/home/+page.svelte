@@ -5,10 +5,25 @@
 	import AppButton from './AppButton.svelte';
 	import { home } from '$lib/home.svelte';
 	import { goto } from '$app/navigation';
+	import { format } from 'date-fns';
+	import { SvelteDate } from 'svelte/reactivity';
+
+	const now = new SvelteDate();
+
+	$effect(() => {
+		const interval = setInterval(() => {
+			now.setTime(Date.now());
+		}, 1000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	});
 </script>
 
-<section>
+<section class="head">
 	<h1>wtv</h1>
+	<h4>{format(now.getTime(), 'HH:mm')}</h4>
 </section>
 
 <section class="apps">
@@ -40,6 +55,12 @@
 		gap: 8px;
 
 		scroll-snap-type: x mandatory;
+	}
+
+	.head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	.offline {
