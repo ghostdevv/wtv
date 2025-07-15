@@ -80,11 +80,12 @@
 		}
 
 		.apps {
-			display: flex;
-			flex-wrap: wrap;
-			overflow-y: auto;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, 650px);
+			grid-auto-rows: auto;
+			align-content: start;
 			scroll-snap-type: y mandatory;
-			gap: 8px;
+			gap: 12px;
 
 			height: 100%;
 			max-height: 100%;

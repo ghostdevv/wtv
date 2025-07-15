@@ -16,59 +16,54 @@
 	class="app"
 	{onclick}
 	title={app.name}
-	class:selected={displayHomeStatus && home.list.includes(app.id)}>
-	<div class="content" style:--app-bg-colour={app.background_colour}>
-		{#if app.icon && !imageError}
-			<img
-				src={app.icon}
-				alt="{app.id} cover image"
-				onerror={() => (imageError = true)} />
-		{:else}
-			<p class="name">{app.name}</p>
-		{/if}
-	</div>
+	class:selected={displayHomeStatus && home.list.includes(app.id)}
+	style:--app-bg-colour={app.background_colour}>
+	{#if app.icon && !imageError}
+		<img
+			src={app.icon}
+			alt="{app.id} cover image"
+			onerror={() => (imageError = true)} />
+	{:else}
+		<p class="name">{app.name}</p>
+	{/if}
 </button>
 
 <style lang="scss">
 	.app {
-		display: block;
-		overflow: clip;
+		display: grid;
+		place-items: center;
 		flex-shrink: 0;
-		padding: 0px;
-
-		background-color: transparent;
-		border-radius: 12px;
-		border: 12px solid transparent;
-
 		scroll-snap-align: end;
 
-		&:focus {
+		width: 650px;
+		height: fit-content;
+		aspect-ratio: 16 / 9;
+		/* overflow: clip; */
+
+		padding: 0px;
+		border-radius: 22px;
+
+		border: 12px solid transparent;
+		background-color: var(--app-bg-colour, var(--background-secondary));
+
+		&:focus:not(&:disabled),
+		&:hover:not(&:disabled) {
 			border-color: var(--primary);
+			background-color: var(--app-bg-colour, var(--background-secondary));
 		}
 
-		.content {
-			width: 650px;
-			height: auto;
-			aspect-ratio: 16 / 9;
+		img {
+			min-height: 80px;
+			max-height: 140px;
+			width: auto;
+			max-width: 280px;
 			border-radius: 12px;
+			object-fit: contain;
+		}
 
-			display: grid;
-			place-items: center;
-			background-color: var(--app-bg-colour, var(--background-secondary));
-
-			img {
-				min-height: 80px;
-				max-height: 140px;
-				width: auto;
-				max-width: 280px;
-				border-radius: 12px;
-				object-fit: contain;
-			}
-
-			.name {
-				font-size: 1.2rem;
-				max-width: 80%;
-			}
+		.name {
+			font-size: 1.2rem;
+			max-width: 80%;
 		}
 
 		&.selected {
@@ -98,33 +93,4 @@
 			}
 		}
 	}
-
-	/* .app {
-		&.selected {
-			position: relative;
-
-			&:after {
-				width: 100%;
-				height: 100%;
-				display: grid;
-				place-items: center;
-
-				content: '✓';
-				position: absolute;
-				top: 0;
-				left: 0;
-
-				font-size: 2rem;
-				color: var(--green);
-
-				background-color: rgba(var(--background-tertiary-rgb), 0.5);
-				border-radius: 12px;
-			}
-
-			img {
-				opacity: 0.8;
-				filter: blur(8px);
-			}
-		}
-	} */
 </style>

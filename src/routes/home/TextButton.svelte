@@ -24,7 +24,7 @@
 		padding: 0px;
 
 		background-color: transparent;
-		border-radius: 12px;
+		border-radius: 22px;
 		border: 12px solid transparent;
 
 		scroll-snap-align: end;
