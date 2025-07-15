@@ -32,6 +32,17 @@ exec /usr/bin/wtv
 exec swayidle -w \
     timeout 3600 'systemctl poweroff' \
     before-sleep 'echo "Preventing sleep"'
+
+# On screen display server
+exec swayosd-server
+
+# Capslock OSD
+bindsym --release Caps_Lock exec swayosd-client --caps-lock
+
+# Volume OSD
+bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise --device
+bindsym XF86AudioLowerVolume exec  swayosd-client --output-volume lower --device
+bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle --device
 EOL
 
 echo "Setting startup script"
