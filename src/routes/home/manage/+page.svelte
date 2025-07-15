@@ -85,6 +85,7 @@
 			grid-auto-rows: auto;
 			align-content: start;
 			scroll-snap-type: y mandatory;
+			overflow-y: auto;
 			gap: 12px;
 
 			height: 100%;
