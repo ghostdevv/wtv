@@ -1,7 +1,12 @@
 import { PersistedState } from 'runed';
 
 class HomeManager {
-	private store = new PersistedState('home', ['youtube', 'plex', 'chromium']);
+	private store = new PersistedState('home', [
+		'wtv-youtube',
+		'wtv-plex',
+		'system-chromium',
+		'system-alacritty',
+	]);
 
 	get list() {
 		return this.store.current;
