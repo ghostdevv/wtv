@@ -1,21 +1,32 @@
 <script lang="ts">
+	import { APP_CATEGORIES } from '$lib/app-categories';
 	import AppButton from '../AppButton.svelte';
-	import { wtv_apps } from '$lib/wtv-apps';
 	import { home } from '$lib/home.svelte';
+	import { registry } from '$lib/apps';
 
-	// const wtv_apps_filtered = $derived(
-	// 	wtv_apps.filter((app) => !home.list.includes(app.id)),
-	// );
+	function tab_title_case(label: string) {
+		if (label === 'wtv') {
+			return 'wtv';
+		}
 
-	const TABS = ['all', 'wtv'] as const;
+		return label
+			.replaceAll('-', ' ')
+			.replaceAll('and', '&')
+			.split(' ')
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(' ');
+	}
+
+	const TABS = ['all', ...APP_CATEGORIES] as const;
+
 	let active_tab = $state<(typeof TABS)[number]>('all');
 
 	let apps = $derived.by(() => {
 		switch (active_tab) {
 			case 'all':
-				return wtv_apps;
-			case 'wtv':
-				return wtv_apps;
+				return registry.list();
+			default:
+				return registry.filter_by_category(active_tab);
 		}
 	});
 </script>
@@ -27,7 +38,7 @@
 				class="tab"
 				class:secondary={active_tab != tab}
 				onclick={() => (active_tab = tab)}>
-				{tab}
+				{tab_title_case(tab)}
 			</button>
 		{/each}
 	</div>
@@ -43,9 +54,6 @@
 		{/each}
 	</div>
 </div>
-
-<!-- <section class="col">
-</section> -->
 
 <style lang="scss">
 	.manage {
@@ -63,10 +71,6 @@
 			background-color: var(--background-secondary);
 			border-radius: 12px;
 			padding: 12px;
-
-			.tab {
-				text-transform: capitalize;
-			}
 		}
 
 		.apps {

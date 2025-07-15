@@ -12,6 +12,7 @@ export const wtv_apps: App[] = [
 			type: 'app',
 			quirks: ['user-agent'],
 		},
+		categories: ['wtv'],
 	},
 	// {
 	// 	id: 'jellyfin',
@@ -33,6 +34,7 @@ export const wtv_apps: App[] = [
 			url: 'https://app.plex.tv/desktop/#!/',
 			type: 'app',
 		},
+		categories: ['wtv'],
 	},
 	{
 		id: 'wtv-spotify',
@@ -44,6 +46,7 @@ export const wtv_apps: App[] = [
 			url: 'https://open.spotify.com',
 			type: 'app-ish',
 		},
+		categories: ['wtv'],
 	},
 	{
 		id: 'wtv-chromium',
@@ -55,6 +58,7 @@ export const wtv_apps: App[] = [
 			url: 'https://duckduckgo.com',
 			type: 'plain',
 		},
+		categories: ['wtv'],
 	},
 	{
 		id: 'wtv-alacritty',
@@ -64,5 +68,6 @@ export const wtv_apps: App[] = [
 		environment: {
 			name: 'alacritty',
 		},
+		categories: ['wtv'],
 	},
 ];

@@ -9,7 +9,8 @@ pub fn run() {
             commands::exit::logout,
             commands::exit::shutdown,
             commands::exit::reboot,
-            commands::exit::relaunch
+            commands::exit::relaunch,
+            commands::apps::get_system_applications,
         ])
         .plugin(tauri_plugin_shell::init())
         .run(tauri::generate_context!())

@@ -18,9 +18,7 @@
 					"name": "chromium-app",
 					"cmd": "chromium",
 					"args": [
-						{
-							"validator": "--app=.+"
-						},
+						{ "validator": "--app=.+" },
 						"--disable-extensions",
 						"--no-first-run",
 						"--no-default-browser-check",
@@ -32,12 +30,8 @@
 					"name": "chromium-user-agent",
 					"cmd": "chromium",
 					"args": [
-						{
-							"validator": "--user-agent=.+"
-						},
-						{
-							"validator": "--app=.+"
-						},
+						{ "validator": "--user-agent=.+" },
+						{ "validator": "--app=.+" },
 						"--disable-extensions",
 						"--no-first-run",
 						"--no-default-browser-check",
@@ -49,9 +43,7 @@
 					"name": "chromium-app-ish",
 					"cmd": "chromium",
 					"args": [
-						{
-							"validator": "--app=.+"
-						},
+						{ "validator": "--app=.+" },
 						"--no-first-run",
 						"--no-default-browser-check"
 					]
@@ -64,6 +56,11 @@
 				{
 					"name": "alacritty",
 					"cmd": "alacritty"
+				},
+				{
+					"name": "dex",
+					"cmd": "dex",
+					"args": ["--wait", { "validator": ".+" }]
 				}
 			]
 		},

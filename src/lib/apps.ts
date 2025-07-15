@@ -1,3 +1,5 @@
+import { get_primary_category, type AppCategory } from './app-categories';
+import { invoke, convertFileSrc } from '@tauri-apps/api/core';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { Child, Command } from '@tauri-apps/plugin-shell';
 import { error, info } from '@tauri-apps/plugin-log';
@@ -14,7 +16,15 @@ type AlacrittyEnvironment = {
 	name: 'alacritty';
 };
 
-type Environment = ChromiumEnvironment | AlacrittyEnvironment;
+type SystemAppEnvironment = {
+	name: 'system';
+	desktop_file_path: string;
+};
+
+type Environment =
+	| ChromiumEnvironment
+	| AlacrittyEnvironment
+	| SystemAppEnvironment;
 
 export interface App {
 	id: string;
@@ -22,6 +32,15 @@ export interface App {
 	icon: string | null;
 	background_colour: string | null;
 	environment: Environment;
+	categories: AppCategory[];
+}
+
+interface SystemApplication {
+	id: string;
+	name: string;
+	desktop_file_path: string;
+	icon?: string;
+	categories?: string[];
 }
 
 class AppRegistry {
@@ -31,12 +50,40 @@ class AppRegistry {
 		return this.registry.get(app_id) || null;
 	}
 
+	list() {
+		return this.registry.values().toArray();
+	}
+
+	filter_by_category(category: AppCategory) {
+		return this.list().filter((app) => app.categories.includes(category));
+	}
+
 	async populate() {
 		// prevent re-runs
 		if (this.registry.size > 0) return;
 
 		for (const app of wtv_apps) {
 			this.registry.set(app.id, app);
+		}
+
+		const system_apps = await invoke<SystemApplication[]>(
+			'get_system_applications',
+		);
+
+		for (const app of system_apps) {
+			const id = `system-${app.id}`;
+
+			this.registry.set(id, {
+				id,
+				name: app.name,
+				icon: app.icon ? convertFileSrc(app.icon) : null,
+				background_colour: null,
+				environment: {
+					name: 'system',
+					desktop_file_path: app.desktop_file_path,
+				},
+				categories: [get_primary_category(app.categories)],
+			} satisfies App);
 		}
 	}
 }
@@ -111,6 +158,12 @@ class AppLauncher {
 		switch (app.environment.name) {
 			case 'alacritty':
 				return Command.create('alacritty', []);
+
+			case 'system':
+				return Command.create('dex', [
+					'--wait',
+					app.environment.desktop_file_path,
+				]);
 
 			case 'chromium': {
 				let program = `chromium-${app.environment.type}`;
