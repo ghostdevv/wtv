@@ -34,15 +34,13 @@ exec swayidle -w \
     before-sleep 'echo "Preventing sleep"'
 
 # On screen display server
-exec swayosd-server
-
-# Capslock OSD
-bindsym --release Caps_Lock exec swayosd-client --caps-lock
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
 # Volume OSD
-bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise --device
-bindsym XF86AudioLowerVolume exec  swayosd-client --output-volume lower --device
-bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle --device
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print substr($5,1,length($5)-1)}' > $WOBSOCK
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print substr($5,1,length($5)-1)}' > $WOBSOCK
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && ( [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ] && echo 0 > $WOBSOCK ) || pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print substr($5,1,length($5)-1)}' > $WOBSOCK
 EOL
 
 echo "Setting startup script"

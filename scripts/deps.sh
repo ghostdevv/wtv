@@ -9,6 +9,5 @@ sudo apt upgrade -y \
     swaylock \
     swayidle \
     zsh \
-    dex
-
-# need to install https://github.com/ErikReider/SwayOSD manually
+    dex \
+    wob
