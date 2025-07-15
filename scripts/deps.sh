@@ -8,6 +8,7 @@ sudo apt upgrade -y \
     sway \
     swaylock \
     swayidle \
-    swayosd \
     zsh \
     dex
+
+# need to install https://github.com/ErikReider/SwayOSD manually
