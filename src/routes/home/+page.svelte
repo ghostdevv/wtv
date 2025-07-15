@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { online } from 'svelte/reactivity/window';
 	import { registry, launcher } from '$lib/apps';
-	import TextButton from './TextButton.svelte';
+	import BigButton from './BigButton.svelte';
 	import AppButton from './AppButton.svelte';
 	import { home } from '$lib/home.svelte';
 	import { goto } from '$app/navigation';
@@ -33,15 +33,15 @@
 		{#if app}
 			<AppButton {app} onclick={() => launcher.launch(app_id)} />
 		{:else}
-			<TextButton onclick={() => home.remove(app_id)}>
+			<BigButton onclick={() => home.remove(app_id)}>
 				<h4>"{app_id}" not found</h4>
-			</TextButton>
+			</BigButton>
 		{/if}
 	{/each}
 
-	<TextButton onclick={() => goto('/home/manage')} outline>
+	<BigButton onclick={() => goto('/home/manage')} outline>
 		<h4>+</h4>
-	</TextButton>
+	</BigButton>
 </section>
 
 {#if !online.current}
@@ -52,7 +52,7 @@
 	.apps {
 		display: flex;
 		overflow-x: auto;
-		gap: 8px;
+		gap: 16px;
 
 		scroll-snap-type: x mandatory;
 	}
