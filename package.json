@@ -20,7 +20,7 @@
 	"devDependencies": {
 		"@bbc/tv-lrud-spatial": "^0.0.16",
 		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.23.0",
+		"@sveltejs/kit": "^2.49.5",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
 		"@tauri-apps/cli": "^2.6.2",
 		"date-fns": "^4.1.0",
